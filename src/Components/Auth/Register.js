@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
 import Header from '../../Components/Includes/Header';
 import Footer from '../../Components/Includes/Footer';
 
 import Input from "../../Components/UI/Input";
 import Validations from "../../Components/Utility/Validations";
+
+import * as actions from '../../actions/index';
 
 class Register extends React.Component {
 
@@ -101,12 +104,12 @@ class Register extends React.Component {
 		    });
 		}
 
-	    if (this.form_props.is_form_valid) {
+	    if (is_form_valid) {
 	      const form_data = {};
 	      for (let key in this.form_props.register_form) {
 	        form_data[key] = this.form_props.register_form[key].value;
 	      }
-	      this.props.history.push("/home");
+	      this.props.onSignUp(form_data);			
 	    }
 
 
@@ -157,4 +160,17 @@ class Register extends React.Component {
 	}
 }
 
-export default Register;
+const mapStateToProps = (state) => {
+	return {
+		loader: state.auth.loader,
+		error: state.auth.error,
+	};
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onSignUp: (form_data) => dispatch(actions.SignUp(form_data))
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
