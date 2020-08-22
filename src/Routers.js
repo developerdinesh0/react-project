@@ -3,7 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 
 import Register from './Components/Auth/Register';
 import Login from './Components/Auth/Login';
-import Home from './Components/Home';
+
+import Dashboard from './Components/Dashboard/Dashboard';
+import Tracks from './Components/Tracks/Tracks';
 
 const Routers = (props) => {
 	return (
@@ -11,7 +13,9 @@ const Routers = (props) => {
 			<Switch>
 				<Route path='/' exact component={Login} />
 				<Route path='/register' component={Register} />
-				<Route path='/home' component={Home} />
+
+				<Route path='/dashboard' component={Dashboard} />
+				<Route path='/tracks' component={Tracks} />
 			</Switch>
 		</div>
 	)

@@ -18,14 +18,12 @@ export const SignUp = (form_data) => {
 	return (dispatch) => {
 		dispatch(signUpStart());
 		axios
-		.post(
-			actionType.API_ROOT + '/api/auth.php',
-			{
-				form_data: form_data
-			},
+		.patch(
+			actionType.API_ROOT + '/api/auth_register.php',
+			form_data,
 			{
 				headers: {
-					'Content-Type': 'application/json',
+					"Content-Type": "multipart/form-data",
 				},
 			}
 		).then((response) => {

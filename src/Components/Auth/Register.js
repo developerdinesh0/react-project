@@ -154,7 +154,7 @@ class Register extends React.Component {
 							</div>
 						</div>
 					</div>
-				<Footer linkText="Already have an account?" pageName="/login" />
+				<Footer linkText="Already have an account?" pageName="/" />
 			</React.Fragment>
 		)
 	}
