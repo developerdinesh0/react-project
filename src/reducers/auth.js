@@ -11,9 +11,20 @@ const reducer = (state = initial_state, action) => {
     case actionType.SIGNUP_START:
       return {
         ...state,
-        loader: true,
-        error: null,
-        token: null
+        loader: action.loader,
+        error: action.error,      
+      };
+    case actionType.SIGNUP_FAIL:    
+      return {
+        ...state,
+        loader: action.loader,
+        error: action.error,
+      };
+    case actionType.SIGNUP_SUCCESS:
+      return {
+        ...state,
+        loader: action.loader,
+        error: action.error,
       };
     default:
       return state;

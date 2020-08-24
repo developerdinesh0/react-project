@@ -6,13 +6,20 @@ import Header from '../../Components/Includes/Header';
 import Footer from '../../Components/Includes/Footer';
 
 import Input from "../../Components/UI/Input";
+import Loader from '../../Components/Utility/Loader';
 import Validations from "../../Components/Utility/Validations";
 
 import * as actions from '../../actions/index';
 
 class Register extends React.Component {
-
-	form_props = {
+	constructor(props){
+		super(props)
+		this.state ={
+			loader: null,
+			register_error: null,
+		}
+	}
+	form_prop = {
 	    register_form: {
 	        full_name: {
 	            element_type: "input",
@@ -60,11 +67,11 @@ class Register extends React.Component {
 	        },
 	    },
 	    is_form_valid: false,
-	};
+	}
 
 	inputChangeHandler (event, identifier){
 		event.preventDefault();
-		const update_register_form = this.form_props.register_form;
+		const update_register_form = this.form_prop.register_form;
 		const form_element = update_register_form[identifier];
 		form_element.value = event.target.value;
 		let validate_element = Validations(
@@ -87,8 +94,8 @@ class Register extends React.Component {
 	registerSubmitHandler = (event) => {
 		event.preventDefault();
 		let is_form_valid = true;
-		if(!this.form_props.is_form_valid){
-			const update_register_form = this.form_props.register_form;
+		if(!this.form_prop.is_form_valid){
+			const update_register_form = this.form_prop.register_form;
 			for(let key in update_register_form){
 				let form_element = update_register_form[key]
 				if(form_element.validations.required && form_element.value.trim() === ""){
@@ -106,8 +113,8 @@ class Register extends React.Component {
 
 	    if (is_form_valid) {
 	      const form_data = {};
-	      for (let key in this.form_props.register_form) {
-	        form_data[key] = this.form_props.register_form[key].value;
+	      for (let key in this.form_prop.register_form) {
+	        form_data[key] = this.form_prop.register_form[key].value;
 	      }
 	      this.props.onSignUp(form_data);			
 	    }
@@ -116,13 +123,15 @@ class Register extends React.Component {
 	}
 
 	render() {
+		const { register_error, loader } = this.props;
 		let form_elements = [];
-		for(let key in this.form_props.register_form){
-			form_elements.push({ id: key, config: this.form_props.register_form[key] });			
+		for(let key in this.form_prop.register_form){
+			form_elements.push({ id: key, config: this.form_prop.register_form[key] });			
 		}
 		return(
 			<React.Fragment>
 				<Header lightText="Welcome to" boldText="New Dwarka - Los Angles" />
+
 					<div className="main_wrap_content">
 						<div className="container-fluid">
 							<div className="register_form">
@@ -140,7 +149,10 @@ class Register extends React.Component {
 					                    error_msg={element.config.error_msg}
 					                  />
 					                ))}
-
+									{loader ? <Loader /> : null}
+									<div className="error"style={{ display: '(register_error) ? block : none' }}>
+										{register_error}
+									</div>
 					                <div className="term_condition_section">
 					                  <p>
 					                    By Creating and account,you agree to our{" "}
@@ -160,10 +172,10 @@ class Register extends React.Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {	
 	return {
 		loader: state.auth.loader,
-		error: state.auth.error,
+		register_error: state.auth.error,
 	};
 };
 

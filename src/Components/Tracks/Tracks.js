@@ -31,32 +31,34 @@ class Tracks extends Component{
                             </ul>
                         </div>
                     </nav>
-                    <div id="content" className="p-4 p-md-5">
-                		<h2 className="mb-4">Tracks</h2>
+                    <div className="container">
+                		<h2 className="page-title">Tracks</h2>
                         <div className="row">
                             <div className="col-md-12">
-                                <table className="table table-striped">
-                                  <thead>
-                                    <tr>      
-                                        <th>Song</th>
-                                        <th>Artist</th>
-                                        <th>Listeners</th>
-                                        <th>Streams</th>
-                                        <th>Downloads</th>
-                                        <th>Relese Data</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td>Financial Woman</td>
-                                      <td>P-Squear</td>
-                                      <td>300</td>
-                                      <td>200</td>
-                                      <td>150</td>
-                                      <td>3 days ago</td>
-                                    </tr>
-                                  </tbody>
-                                </table>
+                                <div className="table-responsive">
+                                    <table className="table table-striped">
+                                      <thead>
+                                        <tr>      
+                                            <th>Song</th>
+                                            <th>Artist</th>
+                                            <th>Listeners</th>
+                                            <th>Streams</th>
+                                            <th>Downloads</th>
+                                            <th>Relese Data</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td>Financial Woman</td>
+                                          <td>P-Squear</td>
+                                          <td>300</td>
+                                          <td>200</td>
+                                          <td>150</td>
+                                          <td>3 days ago</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
